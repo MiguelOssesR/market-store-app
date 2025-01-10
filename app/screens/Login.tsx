@@ -1,5 +1,5 @@
-import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
+import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidingView } from 'react-native'
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { NavigationProp } from '@react-navigation/native';
@@ -7,38 +7,26 @@ import { NavigationProp } from '@react-navigation/native';
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
+
 const Login = ({ navigation }: RouterProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
 
-  const signIn = async () => { 
+  const signIn = async () => {
     setLoading(true);
     try {
-      const response = await signInWithEmailAndPassword(auth,email, password);
-      console.log(response);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      //console.log(response);
+      console.log(JSON.stringify(response, null, 2));
       alert('Sesión iniciada correctamente')
-      } catch (error: any) {
-          console.log(error);
-          alert('Fallo el inicio de sesión ' + error.message);
-      } finally {
-          setLoading(false);
-      }
-  }
-
-  const signUp = async () => { 
-    setLoading(true);
-    try {
-      const response = await createUserWithEmailAndPassword(auth,email, password);
-      console.log(response);
-      alert('Cuenta creada correctamente, revisa el nuevo registro creado en Firebase')
-      } catch (error: any) {
-          console.log(error);
-          alert('Fallo la creación de usuario ' + error.message);
-      } finally {
-          setLoading(false);
-      }
+    } catch (error: any) {
+      console.log(error);
+      alert('Fallo el inicio de sesión ' + error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -46,9 +34,9 @@ const Login = ({ navigation }: RouterProps) => {
       <KeyboardAvoidingView >
         <TextInput value={email} style={styles.input} placeholder='Correo electronico' autoCapitalize='none' onChangeText={(text) => setEmail(text)}></TextInput>
         <TextInput secureTextEntry={true} value={password} style={styles.input} placeholder='Contraseña' autoCapitalize='none' onChangeText={(text) => setPassword(text)}></TextInput>
-        
+
         {loading ? (
-          <ActivityIndicator size="large" color="#0000ff" /> 
+          <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <>
             <Button title='Iniciar sesión' onPress={() => signIn()} />
@@ -62,8 +50,8 @@ const Login = ({ navigation }: RouterProps) => {
 
 export default Login
 
-const styles = StyleSheet.create({ 
-  container: { 
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'

@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator();
 
 const insideStack = createNativeStackNavigator();
 
-function insideLayout() {
+function InsideLayout() {
   return (
     <insideStack.Navigator>
       <insideStack.Screen name='Main' component={Main} options={{ headerShown:false}} />
@@ -29,7 +29,7 @@ export default function App() {
 
   useEffect(() => {
     onAuthStateChanged(FIREBASE_AUTH, (user) => {
-        console.log('user',user);
+        //console.log('user',user);
         setUser(user);
       });
     }, [])
@@ -38,7 +38,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
       {user ? (
-          <Stack.Screen name='Inside' component={insideLayout} options={{ headerShown: false }} />
+          <Stack.Screen name='Inside' component={InsideLayout} options={{ headerShown: false }} />
         ) : (
           <>
             <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
