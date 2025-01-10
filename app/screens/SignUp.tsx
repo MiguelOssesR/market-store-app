@@ -24,7 +24,7 @@ const SignUp = () => {
 
             // Guardar información adicional en Firestore
             await setDoc(doc(FIREBASE_FIRESTORE, "users", user.uid), {
-                uid: user.uid, // Incluir el UID del usuario
+
                 name: name,
                 role: isSeller ? 'Vendedor' : 'Comprador', // Asignar el rol seleccionado
                 email: email
