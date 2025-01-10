@@ -1,0 +1,1 @@
+<h1>Aplicación creada en React Native, tienda</h1>
