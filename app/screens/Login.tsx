@@ -2,8 +2,12 @@ import { View, StyleSheet, TextInput, ActivityIndicator, Button, KeyboardAvoidin
 import React, { useState } from 'react'
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { NavigationProp } from '@react-navigation/native';
 
-const Login = () => {
+interface RouterProps {
+  navigation: NavigationProp<any, any>;
+}
+const Login = ({ navigation }: RouterProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -48,7 +52,7 @@ const Login = () => {
         ) : (
           <>
             <Button title='Iniciar sesión' onPress={() => signIn()} />
-            <Button title='Crear cuenta' onPress={() => signUp()} />
+            <Button title='Crear cuenta' onPress={() => navigation.navigate('SignUp')} />
           </>
         )}
       </KeyboardAvoidingView>
