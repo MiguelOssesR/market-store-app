@@ -8,29 +8,31 @@ interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
-const Main = ({navigation}: RouterProps) => {
+const MainBuyer = ({navigation}: RouterProps) => {
   //Consultar información del usuario
   const [userName, setUserName] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const auth = FIREBASE_AUTH;
   useEffect(() => {
     const fetchUserName = async () => {
       const user = auth.currentUser ;
       if (user) {
-        const userDocRef = doc(FIREBASE_FIRESTORE, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
+        const userDoc = await getDoc(doc(FIREBASE_FIRESTORE, "users", user.uid));
         if (userDoc.exists()) {
           setUserName(userDoc.data().name);
+          setUserRole(userDoc.data().role);
         } else {
-          console.log("No such document!");
+          console.log("No se ha encontrado el documento de este usuario!");
         }
       }
     };
 
     fetchUserName();
   }, [auth.currentUser ]);
+
   return (
     <View style={styles.container}>
-            {userName && <Text style={styles.userName}>Bienvenido, {userName}</Text>}
+            {userName && <Text style={styles.userName}>Bienvenido a Main Buyer, Usuario: {userName}, Role: {userRole}</Text>}
 
       <Button onPress={() => navigation.navigate('List')} title='Abrir lista' />
       <Button onPress={() => FIREBASE_AUTH.signOut()} title='Cerrar Sesión' />
@@ -38,7 +40,7 @@ const Main = ({navigation}: RouterProps) => {
   )
 }
 
-export default Main
+export default MainBuyer
 
 const styles = StyleSheet.create({
   container: {

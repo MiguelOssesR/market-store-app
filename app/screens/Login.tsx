@@ -32,13 +32,12 @@ const Login = ({ navigation }: RouterProps) => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView >
-        <TextInput value={email} style={styles.input} placeholder='Correo electronico' autoCapitalize='none' onChangeText={(text) => setEmail(text)}></TextInput>
-        <TextInput secureTextEntry={true} value={password} style={styles.input} placeholder='Contraseña' autoCapitalize='none' onChangeText={(text) => setPassword(text)}></TextInput>
-
         {loading ? (
           <ActivityIndicator size="large" color="#0000ff" />
         ) : (
           <>
+            <TextInput value={email} style={styles.input} placeholder='Correo electronico' autoCapitalize='none' onChangeText={(text) => setEmail(text)}></TextInput>
+            <TextInput secureTextEntry={true} value={password} style={styles.input} placeholder='Contraseña' autoCapitalize='none' onChangeText={(text) => setPassword(text)}></TextInput>
             <Button title='Iniciar sesión' onPress={() => signIn()} />
             <Button title='Crear cuenta' onPress={() => navigation.navigate('SignUp')} />
           </>
