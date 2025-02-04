@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NavigationProp } from '@react-navigation/native'
-import { FIREBASE_AUTH, FIREBASE_FIRESTORE } from '../../FirebaseConfig'
+import { FIREBASE_AUTH, FIREBASE_FIRESTORE } from '../../../FirebaseConfig'
 import { doc, getDoc } from 'firebase/firestore';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
-const MainBuyer = ({navigation}: RouterProps) => {
+const MainAdmin = ({navigation}: RouterProps) => {
   //Consultar información del usuario
   const [userName, setUserName] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
@@ -32,7 +32,7 @@ const MainBuyer = ({navigation}: RouterProps) => {
 
   return (
     <View style={styles.container}>
-            {userName && <Text style={styles.userName}>Bienvenido a Main Buyer, Usuario: {userName}, Role: {userRole}</Text>}
+            {userName && <Text style={styles.userName}>Bienvenido a Main Admin, Usuario: {userName}, Role: {userRole}</Text>}
 
       <Button onPress={() => navigation.navigate('List')} title='Abrir lista' />
       <Button onPress={() => FIREBASE_AUTH.signOut()} title='Cerrar Sesión' />
@@ -40,7 +40,7 @@ const MainBuyer = ({navigation}: RouterProps) => {
   )
 }
 
-export default MainBuyer
+export default MainAdmin
 
 const styles = StyleSheet.create({
   container: {

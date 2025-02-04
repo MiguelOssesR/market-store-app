@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { doc, getDoc } from 'firebase/firestore';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH, FIREBASE_FIRESTORE } from './FirebaseConfig';
-import MainAdmin from './app/screens/MainAdmin';
-import MainSeller from './app/screens/MainSeller';
-import MainBuyer from './app/screens/MainBuyer';
+import MainAdmin from './app/screens/Admin/MainAdmin';
+import MainSeller from './app/screens//Seller/MainSeller';
+import MainBuyer from './app/screens/Buyer/MainBuyer';
 import Login from './app/screens/Login';
 import SignUp from './app/screens/SignUp';
 import List from './app/screens/List';
@@ -19,7 +19,7 @@ const insideStack = createNativeStackNavigator();
 function AdminLayout() {
   return (
     <insideStack.Navigator>
-      <insideStack.Screen name='Main' component={MainAdmin} options={{ headerShown: false }} />
+      <insideStack.Screen name='MainAdmin' component={MainAdmin} options={{ headerShown: false }} />
       <insideStack.Screen name='List' component={List} options={{ headerShown: true }} />
     </insideStack.Navigator>
   );
