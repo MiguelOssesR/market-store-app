@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Pressable, TextInput, ActivityIndicator, Button, KeyboardAvoidingView, Image, Text } from 'react-native'
+import { View, StyleSheet, Pressable, TextInput, ActivityIndicator, KeyboardAvoidingView, Image, Text } from 'react-native'
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { NavigationProp } from '@react-navigation/native';
@@ -24,10 +24,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress }) => {
 };
 
 const Login = ({ navigation }: RouterProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('testcomprador@test.com');
+  const [password, setPassword] = useState('123456');
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
+
+
 
   const signIn = async () => {
     setLoading(true);
@@ -35,7 +37,7 @@ const Login = ({ navigation }: RouterProps) => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       //console.log(response);
       //console.log(JSON.stringify(response, null, 2));
-      alert('Sesión iniciada correctamente')
+      //alert('Sesión iniciada correctamente')
     } catch (error: any) {
       console.log(error);
       alert('Fallo el inicio de sesión ' + error.message);

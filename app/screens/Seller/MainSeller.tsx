@@ -13,6 +13,7 @@ const MainSeller = ({navigation}: RouterProps) => {
   const [userName, setUserName] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
   const auth = FIREBASE_AUTH;
+
   useEffect(() => {
     const fetchUserName = async () => {
       const user = auth.currentUser ;

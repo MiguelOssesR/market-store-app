@@ -13,8 +13,8 @@ const MainBuyer = ({ navigation }: RouterProps) => {
   const [userName, setUserName] = useState<string | null>(null);
   const [userRole, setUserRole] = useState<string | null>(null);
   const [userImage, setUserImage] = useState<string>("Vacio");
-
   const auth = FIREBASE_AUTH;
+
   useEffect(() => {
     const fetchUserName = async () => {
       const user = auth.currentUser;
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 60, // Espacio para la TabBar
   },
   userName: {
     fontSize: 18,

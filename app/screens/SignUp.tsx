@@ -7,6 +7,8 @@ import { doc, setDoc } from 'firebase/firestore';
 import { Checkbox } from 'expo-checkbox';
 
 const SignUp = () => {
+    const defaultImage = 'https://cdn-icons-png.flaticon.com/512/6522/6522581.png';
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -26,8 +28,9 @@ const SignUp = () => {
             await setDoc(doc(FIREBASE_FIRESTORE, "users", user.uid), {
 
                 name: name,
-                role: isSeller ? 'Vendedor' : 'Comprador', // Asignar el rol seleccionado
-                email: email
+                role: isSeller ? 'Vendedor' : 'Comprador',
+                email: email,
+                image: defaultImage
             });
 
             alert('Cuenta creada correctamente, revisa el nuevo registro creado en Auth y en Firestore');
